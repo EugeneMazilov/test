@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+REPO_DIR="$SCRIPT_DIR/<relative_path_to_repo_root>"
+BUILD_ID="<build_type_id>"
+ARTIFACT_NAME="<artifact_name>"
+
+CMD_PARAMS="builds get-by-repo-commit\
+ --repo "$REPO_DIR"\
+ --build-type-id "$BUILD_ID"\
+ --artifact-name "$ARTIFACT_NAME"\
+ $@"
+
+echo Run ci-project-tools for downloading the build
+"$REPO_DIR"/.venv/bin/python -m ci_project_tools --debug $CMD_PARAMS

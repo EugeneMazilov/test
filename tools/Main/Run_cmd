@@ -1,0 +1,11 @@
+@echo off
+
+set "REPO_DIR=%~dp0\<relative_path_to_repo_root>"
+set "APP_PATH=%~dp0\<relative_path_to_app_dir>\<application.exe>"
+
+echo Running application through ci-project-tool...
+if [%*] == [] (
+	call "%REPO_DIR%\.venv\Scripts\python" -m ci_project_tools --debug app %APP_PATH% run
+) else (
+	call "%REPO_DIR%\.venv\Scripts\python" -m ci_project_tools --debug app %APP_PATH% run --extra-args %*
+)

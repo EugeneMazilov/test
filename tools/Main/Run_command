@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+REPO_DIR="$SCRIPT_DIR/<relative_path_to_repo_root>"
+APP_PATH="$SCRIPT_DIR/<relative_path_to_app_dir>/<application.exe>"
+
+echo Running application through ci-project-tool...
+if [[ ! -z $1 ]]; then
+	"$REPO_DIR"/.venv/bin/python -m ci_project_tools --debug app "$APP_PATH" run --extra-args $@
+else
+	"$REPO_DIR"/.venv/bin/python -m ci_project_tools --debug app "$APP_PATH" run
+fi
