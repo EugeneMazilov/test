@@ -1,0 +1,13 @@
+@echo off
+
+set "REPO_DIR=%~dp0\<relative_path_to_repo_root>"
+set "BUILD_ID=<build_type_id>"
+set "ARTIFACT_NAME=<artifact_name>"
+
+echo Run ci-project-tools for downloading the build
+call "%REPO_DIR%\.venv\Scripts\python" -m ci_project_tools --debug^
+ builds get-by-repo-commit^
+ --repo "%REPO_DIR%"^
+ --build-type-id "%BUILD_ID%"^
+ --artifact-name "%ARTIFACT_NAME%"^
+ %*

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+REPO_DIR="$SCRIPT_DIR/<relative_path_to_repo_root>"
+
+echo Run ci-project-tools for downloading the build
+"$REPO_DIR"/.venv/bin/python -m ci_project_tools --debug repo "$REPO_DIR" pull-request $@
